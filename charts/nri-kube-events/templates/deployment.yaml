@@ -80,6 +80,10 @@ spec:
               value: "false"
             - name: NRIA_IS_FORWARD_ONLY
               value: "true"
+            {{- if .Values.customAttributes }}
+            - name: NRIA_CUSTOM_ATTRIBUTES
+              value: {{ .Values.customAttributes | toJson | quote }}
+            {{- end }}
           volumeMounts:
             - mountPath: /var/db/newrelic-infra/data
               name: tmpfs-data

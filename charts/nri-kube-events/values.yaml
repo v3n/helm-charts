@@ -118,3 +118,7 @@ nrStaging: false
 deployment:
   # Annotations to add to the Deployment.
   annotations: {}
+
+customAttributes: {}
+#  environment: staging
+#  owning-team: devel
