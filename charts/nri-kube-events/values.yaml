@@ -60,7 +60,7 @@ image:
     pullPolicy: IfNotPresent
   infraAgent:
     repository: newrelic/k8s-events-forwarder
-    tag: 1.20.5
+    tag: 1.22.0
     pullPolicy: IfNotPresent
   ## It is possible to specify docker registry credentials
   ## See https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
@@ -119,6 +119,8 @@ deployment:
   # Annotations to add to the Deployment.
   annotations: {}
 
+# -- Custom attributes here has the same functionality as in the new infrastructure v3 chart. you can read a string (becase is a string in JSON format)
+# or read directly the map here and encode to JSON.
 customAttributes: {}
-#  environment: staging
-#  owning-team: devel
+# environment: test
+# owning-team: devel

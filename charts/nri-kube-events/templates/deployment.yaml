@@ -82,7 +82,7 @@ spec:
               value: "true"
             {{- if .Values.customAttributes }}
             - name: NRIA_CUSTOM_ATTRIBUTES
-              value: {{ .Values.customAttributes | toJson | quote }}
+              value: {{ include "newrelic.customAttributes" . | quote }}
             {{- end }}
           volumeMounts:
             - mountPath: /var/db/newrelic-infra/data
