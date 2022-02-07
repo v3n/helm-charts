@@ -38,7 +38,9 @@ Kubernetes: `>=1.16.0-0`
 | controlPlane.config.timeout | string | `"10s"` | Timeout for the Kubernetes APIs contacted by the integration |
 | controlPlane.enabled | bool | `true` | Deploy control plane monitoring component. |
 | controlPlane.kind | string | `"DaemonSet"` | How to deploy the control plane scraper. If autodiscovery is in use, it should be `DaemonSet`. Advanced users using static endpoints set this to `Deployment` to avoid reporting metrics twice. |
+| controlPlane.strategy | object | `type: Recreate`. | Deployment strategy to use when running as a Deployment. |
 | controlPlane.unprivilegedHostNetwork | bool | `false` | Run Control Plane scraper with `hostNetwork` even if `privileged` is set to false. `hostNetwork` is required for most control plane configurations, as they only accept connections from localhost. |
+| controlPlane.updateStrategy | object | Root-level `updateStrategy`. | Update strategy to use when running as a DaemonSet. Overrides the global updateStrategy. |
 | customAttributes | object | `{}` | Custom attributes to be added to the data reported by all integrations reporting in the cluster. |
 | images | object | See `values.yaml` | Images used by the chart for the integration and agents. |
 | images.agent.repository | string | `"newrelic/infrastructure-bundle"` | Image for the agent and integrations bundle. |

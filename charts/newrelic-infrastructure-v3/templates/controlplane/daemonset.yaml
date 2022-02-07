@@ -12,9 +12,16 @@ metadata:
   {{- end }}
 spec:
   {{- if eq .Values.controlPlane.kind "DaemonSet"}}
-  {{- with .Values.updateStrategy }}
-  updateStrategy: {{ toYaml . | nindent 4 }}
+  {{- if .Values.controlPlane.updateStrategy }}
+  updateStrategy:
+    {{- toYaml .Values.controlPlane.updateStrategy | nindent 4 }}
+  {{- else if .Values.updateStrategy }}
+  updateStrategy:
+    {{- toYaml .Values.updateStrategy | nindent 4 }}
   {{- end }}
+  {{- else }}
+  strategy:
+    {{- toYaml .Values.controlPlane.strategy | nindent 4 }}
   {{- end }}
   selector:
     matchLabels:
