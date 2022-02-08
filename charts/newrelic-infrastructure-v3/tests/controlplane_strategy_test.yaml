@@ -23,9 +23,9 @@ tests:
     set:
       licenseKey: test
       cluster: test
-      controlPlane:
-        updateStrategy:
-          type: Foobar
+      updateStrategy:
+        rollingUpdate: null  # Otherwise helm will not remove the default rollingUpdate
+        type: Foobar
     asserts:
       - equal:
           path: spec.updateStrategy
@@ -47,7 +47,7 @@ tests:
       - isNull:
           path: spec.updateStrategy
         template: templates/controlplane/daemonset.yaml
-  - it: Deployment strategy can be overriden
+  - it: Deployment strategy can be overridden
     set:
       licenseKey: test
       cluster: test

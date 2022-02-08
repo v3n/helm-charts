@@ -181,9 +181,6 @@ controlPlane:
     requests:
       cpu: 100m
       memory: 150M
-  # -- Update strategy to use when running as a DaemonSet. Overrides the global updateStrategy.
-  # @default -- Root-level `updateStrategy`.
-  updateStrategy: {}
   # -- Deployment strategy to use when running as a Deployment.
   # @default -- `type: Recreate`.
   strategy:

@@ -11,17 +11,16 @@ metadata:
   annotations: {{ . | nindent 4 }}
   {{- end }}
 spec:
-  {{- if eq .Values.controlPlane.kind "DaemonSet"}}
-  {{- if .Values.controlPlane.updateStrategy }}
+  {{- if eq .Values.controlPlane.kind "DaemonSet" }}
+  {{- with .Values.updateStrategy }}
   updateStrategy:
-    {{- toYaml .Values.controlPlane.updateStrategy | nindent 4 }}
-  {{- else if .Values.updateStrategy }}
-  updateStrategy:
-    {{- toYaml .Values.updateStrategy | nindent 4 }}
+    {{- toYaml . | nindent 4 }}
   {{- end }}
-  {{- else }}
+  {{- else if eq .Values.controlPlane.kind "Deployment" }}
+  {{- with .Values.controlPlane.strategy }}
   strategy:
-    {{- toYaml .Values.controlPlane.strategy | nindent 4 }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   {{- end }}
   selector:
     matchLabels:
@@ -177,11 +176,11 @@ spec:
               - key: nri-kubernetes.yml
                 path: nri-kubernetes.yml
         - name: forwarder-tmpfs-data
-          emptyDir: {}
+          emptyDir: { }
         - name: forwarder-tmpfs-user-data
-          emptyDir: {}
+          emptyDir: { }
         - name: forwarder-tmpfs-tmp
-          emptyDir: {}
+          emptyDir: { }
         - name: config
           configMap:
             name: {{ template "newrelic.fullname" . }}-agent
