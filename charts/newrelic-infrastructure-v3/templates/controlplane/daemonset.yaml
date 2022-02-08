@@ -176,11 +176,11 @@ spec:
               - key: nri-kubernetes.yml
                 path: nri-kubernetes.yml
         - name: forwarder-tmpfs-data
-          emptyDir: { }
+          emptyDir: {}
         - name: forwarder-tmpfs-user-data
-          emptyDir: { }
+          emptyDir: {}
         - name: forwarder-tmpfs-tmp
-          emptyDir: { }
+          emptyDir: {}
         - name: config
           configMap:
             name: {{ template "newrelic.fullname" . }}-agent
